@@ -1,17 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"os"
-)
+
+	"github.com/tlaceby/parser-series/src/lexer"
+)	
 
 func main () {
-	bytes, err := os.ReadFile("../examples/expressions.nar")
-	if err != nil {
-		fmt.Println("Error Occured While Reading The Source Code")
+	bytes, _ := os.ReadFile("./examples/01.lang")
+	tokens := lexer.Tokenize(string(bytes))
+	
+	for _, token := range tokens {
+		token.Debug()
 	}
-	source_string := string(bytes) 
-
-	// print the source code 
-	fmt.Println(source_string)
 }
